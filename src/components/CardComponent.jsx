@@ -2,13 +2,15 @@ import React from 'react';
 
 
 
-export default function Card({ movie, updateSavedMovieList, cardType }) {
+export default function Card({ movie, updateSavedMovieList, cardType, deleteFromSavedMovieList}) {
 
     const addToList = (listType) => {
         const tempMovie = {...movie, listType: listType};
         // console.log("movie", movie);
         updateSavedMovieList(tempMovie);
     }
+
+    
 
     return (
         <>
@@ -32,19 +34,20 @@ export default function Card({ movie, updateSavedMovieList, cardType }) {
                                                 </button>
                                                 <ul className="dropdown-menu">
                                                     <li>
-                                                        <a href className="dropdown-item" onClick={ () => addToList('Thriller') }>Thriller</a>
+                                                        <a href="#" className="dropdown-item" onClick={ () => addToList('Thriller') }>Thriller</a>
                                                     </li>
                                                     <li>
-                                                        <a href className="dropdown-item" onClick={ () => addToList('Action') }>Action</a>
+                                                        <a href="#" className="dropdown-item" onClick={ () => addToList('Action') }>Action</a>
                                                     </li>
                                                 </ul>
                                                 
                                             </div>
                                            
                                         
-                                    ) : ""
+                                    ) : 
+                                    <button type="button" className="btn btn-danger" onClick={() => deleteFromSavedMovieList(movie.imdbID)}>Delete</button>
                                 }
-                                <button type="button" className="btn btn-warning">View Details</button>
+                                
                             </div>
                             {/* <div className="btn-group">
                                 <button type="button" className="btn btn-sm btn-outline-secondary">View</button>

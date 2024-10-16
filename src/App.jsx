@@ -34,6 +34,15 @@ function App() {
 
     }
 
+    const deleteFromSavedMovieList = (imdbID) => {
+        let tempMovieList = [...localMovieList];
+        tempMovieList = tempMovieList.filter((item) => item.imdbID != imdbID);
+
+        setLocalMovieList(tempMovieList);
+        localStorage.setItem("movieList", JSON.stringify(tempMovieList));
+
+    }
+
     const fetchMoviesFromLocalStorage = () => {
         const tempMovieList = JSON.parse(localStorage.getItem("movieList")) || [];
         setLocalMovieList(tempMovieList);
@@ -47,12 +56,12 @@ function App() {
     
     return (
         <>
-            <img width="50px" src={favicon} alt="logo" />
+            <img width="100px" src={favicon} alt="logo" />
             <Title/>
             <Search updateSearchResult={updateSearchResult} />
-            <Result moviesList={moviesResult} updateSavedMovieList={updateSavedMovieList}/>
-            <Hero/>
-            <SavedMovies moviesList={localMovieList}/>
+            <Result moviesList={moviesResult} updateSavedMovieList={updateSavedMovieList} />
+            {/* <Hero/> */}
+            <SavedMovies moviesList={localMovieList} deleteFromSavedMovieList={deleteFromSavedMovieList}/>
         </>
     )
 }
