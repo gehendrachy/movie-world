@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from './CardComponent'
 
-export default function MovieList({moviesList}) {
+export default function MovieList({moviesList, updateSavedMovieList, cardType}) {
 	// console.log("test",moviesList);
 	return (
 		<>
@@ -12,7 +12,8 @@ export default function MovieList({moviesList}) {
 							<Card 
 								key={index}
 								movie={movie}
-								cardType="search"
+								cardType={cardType}
+								updateSavedMovieList={updateSavedMovieList}
 								/>
 						)
 					})

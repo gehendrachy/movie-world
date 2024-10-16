@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -17,15 +17,42 @@ function App() {
         // console.log(moviesList);
         setMoviesResult(moviesList)
     }
+
+    const [localMovieList, setLocalMovieList] = useState([]);
+
+    const updateSavedMovieList = (newMovie) => {
+        
+        const alreadyExists =   localMovieList.find(
+                                    (item) => item.imdbID == newMovie.imdbID
+                                );
+        
+        if(!alreadyExists){
+            const tempMovieList = [...localMovieList, newMovie];
+            setLocalMovieList(tempMovieList);
+            localStorage.setItem("movieList", JSON.stringify(tempMovieList));
+        }
+
+    }
+
+    const fetchMoviesFromLocalStorage = () => {
+        const tempMovieList = JSON.parse(localStorage.getItem("movieList")) || [];
+        setLocalMovieList(tempMovieList);
+    }
+
+    useEffect(() => {
+            fetchMoviesFromLocalStorage();
+        },[]
+    );
+
     
     return (
         <>
             <img width="50px" src={favicon} alt="logo" />
             <Title/>
             <Search updateSearchResult={updateSearchResult} />
-            <Result moviesList={moviesResult}/>
+            <Result moviesList={moviesResult} updateSavedMovieList={updateSavedMovieList}/>
             <Hero/>
-            <SavedMovies/>
+            <SavedMovies moviesList={localMovieList}/>
         </>
     )
 }

@@ -9,7 +9,7 @@ export default function Search({updateSearchResult}) {
 		event.preventDefault();
 		const searchQuery = searchInput.current.value;
 		const tempMovieList = await fetchMultipleMoviesList(searchQuery);
-		
+		console.log(tempMovieList);
 		updateSearchResult(tempMovieList);
 		
 	}

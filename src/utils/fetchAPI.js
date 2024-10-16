@@ -16,6 +16,7 @@ export const fetchMultipleMoviesList = async (searchQuery) => {
             plot: singleMovie.data.Plot,
             posterSrc: singleMovie.data.Poster,
             imdbID: singleMovie.data.imdbID,
+            duration: singleMovie.data.Runtime
         });
     }
 
