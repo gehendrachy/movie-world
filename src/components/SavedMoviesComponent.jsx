@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Switch from './SwitchComponent'
 import MovieList from './MovieListComponent'
 
-export default function SavedMovies({moviesList, deleteFromSavedMovieList}) {
+export default function SavedMovies({ moviesList, deleteFromSavedMovieList }) {
+
+  const [movieType, setMovieType] = useState("All");
+
+  const filteredMovieList = moviesList.filter((item) => {
+    return movieType === "All" || item.listType === movieType;
+  });
+
   return (
     <>
-        <Switch/>
-		<hr />
-		<MovieList moviesList={moviesList} deleteFromSavedMovieList={deleteFromSavedMovieList} cardType="saved"/>
+      <Switch setMovieType={setMovieType} movieCount={filteredMovieList.length} />
+      <hr />
+      <MovieList moviesList={filteredMovieList} deleteFromSavedMovieList={deleteFromSavedMovieList} cardType="saved" />
     </>
   )
 }

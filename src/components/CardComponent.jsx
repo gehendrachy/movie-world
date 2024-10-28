@@ -34,10 +34,10 @@ export default function Card({ movie, updateSavedMovieList, cardType, deleteFrom
                                                 </button>
                                                 <ul className="dropdown-menu">
                                                     <li>
-                                                        <a href="#" className="dropdown-item" onClick={ () => addToList('Thriller') }>Thriller</a>
+                                                        <a style={{ cursor: 'pointer' }} className="dropdown-item" onClick={ () => addToList('Thriller') }>Thriller</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" className="dropdown-item" onClick={ () => addToList('Action') }>Action</a>
+                                                        <a style={{ cursor: 'pointer' }} className="dropdown-item" onClick={ () => addToList('Action') }>Action</a>
                                                     </li>
                                                 </ul>
                                                 

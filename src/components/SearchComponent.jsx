@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import { fetchMultipleMoviesList } from '../utils/fetchAPI';
 
 export default function Search({updateSearchResult}) {
-	const searchInput = useRef();
+	const searchInput = useRef("john");
 	
 	const onSubmitSearch = async (event) => {
 		event.preventDefault();

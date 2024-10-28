@@ -2,10 +2,10 @@ import axios from "axios";
 
 export const fetchMultipleMoviesList = async (searchQuery) => {
     const response = await axios.get(`${import.meta.env.VITE_OMDB_URL}?apikey=${import.meta.env.VITE_API_KEY}&s=${searchQuery}`);
-    // console.log(response.data.Search);
+    console.log(response.data.Search);
     
     const tempMovieList = [];
-    const searchResponse = [...response.data.Search];
+    const searchResponse = response.data.Search ? [...response.data.Search] : [];
     
     for (let i = 0; i < searchResponse.length; i++) {
         const singleMovie = await axios.get(`${import.meta.env.VITE_OMDB_URL}?apikey=${import.meta.env.VITE_API_KEY}&i=${searchResponse[i].imdbID}`);
